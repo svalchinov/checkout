@@ -3,6 +3,7 @@ package com.supermarket.integration;
 import com.supermarket.domain.Basket;
 import com.supermarket.model.Item;
 import com.supermarket.model.Promotion;
+import com.supermarket.model.PurchaseList;
 import com.supermarket.service.CheckoutService;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class CheckoutIntegrationTest {
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
-        this.checkoutService = new CheckoutService(new Basket());
+        this.checkoutService = new CheckoutService(new Basket(new PurchaseList()));
     }
 
     @Test
@@ -57,7 +58,7 @@ public class CheckoutIntegrationTest {
         final Basket basket = checkoutService.scan(cake);
 
         // then
-        assertEquals("6.30", basket.getBasketPrice().toString());
+        assertEquals("6.35", basket.getBasketPrice().toString());
         assertEquals("2.50", basket.getSavings().toString());
         assertEquals("3.85", basket.getBasketTotal().toString());
     }

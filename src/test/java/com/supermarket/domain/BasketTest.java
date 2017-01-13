@@ -2,6 +2,7 @@ package com.supermarket.domain;
 
 import com.supermarket.model.Item;
 import com.supermarket.model.Promotion;
+import com.supermarket.model.PurchaseList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class BasketTest {
 
     @Before
     public void setup() {
-        this.basket = new Basket();
+        this.basket = new Basket(new PurchaseList());
     }
 
     @Test
@@ -30,107 +31,6 @@ public class BasketTest {
     @Test
     public void getBasketPrice_basketWithNoPurchases() {
         assertEquals("0.00", basket.getBasketPrice().toString());
-    }
-
-    @Test
-    public void addPurchase() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        Item cookies = new Item("Cookies", new BigDecimal("0.75"), new ArrayList<Promotion>());
-
-        // when
-        basket.addPurchase(milk);
-        basket.addPurchase(cookies);
-
-        // then
-        assertEquals(2, basket.getPurchases().size());
-        assertEquals(milk, basket.getPurchases().get(milk.getName()).getItem());
-        assertEquals(cookies, basket.getPurchases().get(cookies.getName()).getItem());
-    }
-
-    @Test
-    public void addPurchase_existingItem() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        Item cookies = new Item("Cookies", new BigDecimal("0.75"), new ArrayList<Promotion>());
-
-        // when
-        basket.addPurchase(milk);
-        basket.addPurchase(cookies);
-        basket.addPurchase(milk);
-
-        // then
-        assertEquals(2, basket.getPurchases().size());
-        assertEquals(2, basket.getPurchases().get(milk.getName()).getQuantity());
-        assertEquals(milk, basket.getPurchases().get(milk.getName()).getItem());
-    }
-
-
-    @Test
-    public void removePurchase_emptyBasket() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-
-        // when
-        basket.removePurchase(milk);
-
-        // then
-        assertTrue(basket.getPurchases().isEmpty());
-    }
-
-    @Test
-    public void removePurchase_existingItem() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        basket.addPurchase(milk);
-
-        // when
-        basket.removePurchase(milk);
-
-        // then
-        assertTrue(basket.getPurchases().isEmpty());
-    }
-
-    @Test
-    public void removePurchase_existingItemMultipleQuantity() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        Item cookies = new Item("Cookies", new BigDecimal("0.75"), new ArrayList<Promotion>());
-        basket.addPurchase(milk);
-        basket.addPurchase(cookies);
-        basket.addPurchase(milk);
-        basket.addPurchase(milk);
-
-        // when
-        basket.removePurchase(milk);
-
-        // then
-        assertEquals(2, basket.getPurchases().size());
-        assertEquals(2, basket.getPurchases().get(milk.getName()).getQuantity());
-    }
-
-    @Test
-    public void removePurchase_removingLastItem() {
-
-        // given
-        Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        Item cookies = new Item("Cookies", new BigDecimal("0.75"), new ArrayList<Promotion>());
-        basket.addPurchase(milk);
-        basket.addPurchase(cookies);
-        basket.addPurchase(milk);
-
-        // when
-        basket.removePurchase(milk);
-        basket.removePurchase(milk);
-
-        // then
-        assertEquals(1, basket.getPurchases().size());
-        assertEquals(cookies, basket.getPurchases().get(cookies.getName()).getItem());
     }
 
     @Test
