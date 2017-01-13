@@ -9,16 +9,16 @@ public class Promotion {
 
     private String name;
     private int quantity;
-    private BigDecimal savings;
+    private BigDecimal discount;
     private Date expiryDate;
 
     public Promotion(String name,
                      int quantity,
-                     BigDecimal savings) {
+                     BigDecimal discount) {
 
         this.name = name;
         this.quantity = quantity;
-        this.savings = savings;
+        this.discount = discount;
     }
 
     public String getName() {
@@ -33,7 +33,7 @@ public class Promotion {
         return expiryDate;
     }
 
-    public BigDecimal getSavings() {
-        return savings.setScale(SCALE);
+    public BigDecimal getDiscount() {
+        return discount.setScale(SCALE);
     }
 }

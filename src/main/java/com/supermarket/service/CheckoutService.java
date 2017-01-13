@@ -12,9 +12,11 @@ public class CheckoutService {
         this.basket = basket;
     }
 
-    public void scan(Item item) {
+    public Basket scan(Item item) {
         basket.addPurchase(item);
         printResult();
+
+        return basket;
     }
 
     public void removeItem(Item item) {

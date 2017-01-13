@@ -152,7 +152,7 @@ public class PurchaseTest {
 
         // then
         assertEquals(twoForOne.getName(), purchase.getBestPromotion().getName());
-        assertEquals(twoForOne.getSavings(), purchase.getBestPromotion().getSavings());
+        assertEquals(twoForOne.getDiscount(), purchase.getBestPromotion().getDiscount());
     }
 
     @Test
@@ -170,7 +170,7 @@ public class PurchaseTest {
 
         // then
         assertEquals(twoForOne.getName(), purchase.getBestPromotion().getName());
-        assertEquals(twoForOne.getSavings(), purchase.getBestPromotion().getSavings());
+        assertEquals(twoForOne.getDiscount(), purchase.getBestPromotion().getDiscount());
     }
 
     @Test

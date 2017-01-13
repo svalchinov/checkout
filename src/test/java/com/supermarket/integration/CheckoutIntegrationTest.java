@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.junit.Assert.assertEquals;
+
 public class CheckoutIntegrationTest {
 
     private CheckoutService checkoutService;
@@ -33,7 +35,12 @@ public class CheckoutIntegrationTest {
         checkoutService.scan(cookies);
         checkoutService.scan(milk);
         checkoutService.scan(milk);
-        checkoutService.scan(milk);
+        final Basket basket = checkoutService.scan(milk);
+
+        // then
+        assertEquals("4.80", basket.getBasketPrice().toString());
+        assertEquals("0.00", basket.getSavings().toString());
+        assertEquals("4.80", basket.getBasketTotal().toString());
     }
 
     @Test
@@ -47,7 +54,12 @@ public class CheckoutIntegrationTest {
         // when
         checkoutService.scan(milk);
         checkoutService.scan(cake);
-        checkoutService.scan(cake);
+        final Basket basket = checkoutService.scan(cake);
+
+        // then
+        assertEquals("6.30", basket.getBasketPrice().toString());
+        assertEquals("2.50", basket.getSavings().toString());
+        assertEquals("3.85", basket.getBasketTotal().toString());
     }
 
     @Test
@@ -64,7 +76,11 @@ public class CheckoutIntegrationTest {
         checkoutService.scan(milk);
         checkoutService.scan(milk);
         checkoutService.scan(cake);
-        checkoutService.scan(cake);
+        final Basket basket = checkoutService.scan(cake);
 
+        // then
+        assertEquals("7.70", basket.getBasketPrice().toString());
+        assertEquals("3.20", basket.getSavings().toString());
+        assertEquals("4.50", basket.getBasketTotal().toString());
     }
 }

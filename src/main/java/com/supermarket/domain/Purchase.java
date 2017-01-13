@@ -39,23 +39,6 @@ public class Purchase implements Savings {
         return this.quantity;
     }
 
-    /**
-     * Implement more clever promotion selection mechanism where
-     * We run through Purchase checking which and how many promotions can be applied
-     */
-    @Override
-    public BigDecimal getSavings() {
-
-        Promotion promotion = getBestPromotion();
-
-        if (promotion != null && quantity >= promotion.getQuantity()) {
-            BigDecimal cost = promotion.getSavings();
-            int timesToApplyPromo = quantity / promotion.getQuantity();
-            return cost.multiply(valueOf(timesToApplyPromo));
-        }
-
-        return ZERO;
-    }
 
     public Promotion getBestPromotion() {
 
@@ -63,22 +46,37 @@ public class Purchase implements Savings {
         BigDecimal discount = ZERO;
 
         for (Promotion promo : item.getPromotions()) {
-            if (isItemEligible(promo) && promo.getSavings().compareTo(discount) >= 0) {
+            if (isItemEligible(promo) && promo.getDiscount().compareTo(discount) >= 0) {
                 promotion = promo;
-                discount = promo.getSavings();
+                discount = promo.getDiscount();
             }
         }
 
         return promotion;
     }
 
-    private boolean isItemEligible(Promotion promotion) {
-        return quantity >= promotion.getQuantity();
-    }
+    @Override
+    public BigDecimal getSavings() {
 
+        Promotion promotion = getBestPromotion();
+
+        if (promotion != null && quantity >= promotion.getQuantity()) {
+            System.out.println("Applying promotion " + promotion.getName() + " to " + item.getName());
+            BigDecimal cost = promotion.getDiscount();
+            int timesPromotionCanBeApplied = quantity / promotion.getQuantity();
+            return cost.multiply(valueOf(timesPromotionCanBeApplied));
+        }
+
+        return ZERO;
+    }
 
     @Override
     public String toString() {
         return item.getName() + " x" + quantity + ": " + item.getPrice();
+    }
+
+
+    private boolean isItemEligible(Promotion promotion) {
+        return quantity >= promotion.getQuantity();
     }
 }
