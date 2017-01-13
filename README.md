@@ -2,7 +2,7 @@
 
 
 ### Possible entity relationship model
-- [I'm an inline-style link](rdbms/design/entity-relationship-model.png)
+- [Link](rdbms/design/entity-relationship-model.png)
 
 
 ### Future improvements
