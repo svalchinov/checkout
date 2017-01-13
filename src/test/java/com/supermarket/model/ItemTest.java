@@ -22,7 +22,7 @@ public class ItemTest {
 
         // given
         Item milk = new Item("Milk", new BigDecimal(1.57), new ArrayList<Promotion>());
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal(0.75), new BigDecimal(0.75));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal(0.75));
 
         // when
         milk.addPromotion(twoForOne);
@@ -36,7 +36,7 @@ public class ItemTest {
 
         // given
         Item milk = new Item("Milk", new BigDecimal(1.57), new ArrayList<Promotion>());
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal(0.75), new BigDecimal(0.75));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal(0.75));
         milk.addPromotion(twoForOne);
 
         // when

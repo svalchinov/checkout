@@ -9,18 +9,15 @@ public class Promotion {
 
     private String name;
     private int quantity;
-    private BigDecimal cost;
     private BigDecimal savings;
     private Date expiryDate;
 
     public Promotion(String name,
                      int quantity,
-                     BigDecimal cost,
                      BigDecimal savings) {
 
         this.name = name;
         this.quantity = quantity;
-        this.cost = cost;
         this.savings = savings;
     }
 
@@ -30,10 +27,6 @@ public class Promotion {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public BigDecimal getCost() {
-        return cost;
     }
 
     public Date getExpiryDate() {

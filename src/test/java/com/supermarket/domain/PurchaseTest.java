@@ -72,7 +72,7 @@ public class PurchaseTest {
 
         // given
         BigDecimal singleItemPrice = new BigDecimal("1.50");
-        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice, singleItemPrice);
+        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice);
         List<Promotion> promotions = asList(twoForOne);
         Item item = new Item("Cookies", singleItemPrice, promotions);
         Purchase purchase = new Purchase(item);
@@ -89,7 +89,7 @@ public class PurchaseTest {
 
         // given
         BigDecimal singleItemPrice = new BigDecimal("1.50");
-        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice, singleItemPrice);
+        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice);
         List<Promotion> promotions = asList(twoForOne);
         Item item = new Item("Cookies", singleItemPrice, promotions);
         Purchase purchase = new Purchase(item);
@@ -107,7 +107,7 @@ public class PurchaseTest {
 
         // given
         BigDecimal singleItemPrice = new BigDecimal("1.50");
-        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice, singleItemPrice);
+        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice);
         List<Promotion> promotions = asList(twoForOne);
         Item item = new Item("Cookies", singleItemPrice, promotions);
         Purchase purchase = new Purchase(item);
@@ -124,7 +124,7 @@ public class PurchaseTest {
     public void getSavings_twoForLess() {
 
         // given
-        Promotion twoForLess = new Promotion("2 For Less", 2, new BigDecimal("2.00"), new BigDecimal("0.7"));
+        Promotion twoForLess = new Promotion("2 For Less", 2, new BigDecimal("0.7"));
         List<Promotion> promotions = asList(twoForLess);
         Item item = new Item("Cookies", new BigDecimal("1.35"), promotions);
         Purchase purchase = new Purchase(item);
@@ -141,8 +141,8 @@ public class PurchaseTest {
     public void getBestPromotion_forSameQuantity() {
 
         // given
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"), new BigDecimal("1.50"));
-        Promotion twoForLess = new Promotion("2 for less", 2, new BigDecimal("2.50"), new BigDecimal("0.50"));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"));
+        Promotion twoForLess = new Promotion("2 for less", 2, new BigDecimal("0.50"));
         List<Promotion> promotions = asList(twoForOne, twoForLess);
         Item item = new Item("Cookies", new BigDecimal("1.50"), promotions);
 
@@ -159,8 +159,8 @@ public class PurchaseTest {
     public void getBestPromotion_differentQuantityPromotion() {
 
         // given
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"), new BigDecimal("1.50"));
-        Promotion threeForLess = new Promotion("3 for less", 2, new BigDecimal("2.50"), new BigDecimal("0.50"));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"));
+        Promotion threeForLess = new Promotion("3 for less", 2, new BigDecimal("0.50"));
         List<Promotion> promotions = asList(twoForOne, threeForLess);
         Item item = new Item("Cookies", new BigDecimal("1.50"), promotions);
 
@@ -177,7 +177,7 @@ public class PurchaseTest {
     public void getBestPromotion_itemNotEligibleForPromotion() {
 
         // given
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"), new BigDecimal("1.50"));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("1.50"));
         List<Promotion> promotions = asList(twoForOne);
         Item item = new Item("Cookies", new BigDecimal("1.50"), promotions);
 

@@ -168,7 +168,7 @@ public class BasketTest {
 
         // given
         Item milk = new Item("Milk", new BigDecimal("1.57"), new ArrayList<Promotion>());
-        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("0.75"), new BigDecimal("0.75"));
+        Promotion twoForOne = new Promotion("2 for 1", 2, new BigDecimal("0.75"));
         Item cookies = new Item("Cookies", new BigDecimal("0.75"), Arrays.asList(twoForOne));
 
         // when
@@ -190,7 +190,7 @@ public class BasketTest {
 
         // given
         BigDecimal singleItemPrice = new BigDecimal("1.50").setScale(2);
-        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice, singleItemPrice);
+        Promotion twoForOne = new Promotion("2 for 1", 2, singleItemPrice);
         Item milk = new Item("Milk", singleItemPrice, Arrays.asList(twoForOne));
         Item cookies = new Item("Cookies", new BigDecimal(2), new ArrayList<Promotion>());
 
