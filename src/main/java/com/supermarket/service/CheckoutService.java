@@ -29,7 +29,6 @@ public class CheckoutService {
         printResult();
     }
 
-
     private void printResult() {
 
         System.out.println();

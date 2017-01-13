@@ -19,7 +19,6 @@ public class Basket implements Savings {
             Purchase current = purchases.get(item.getName());
             current.setQuantity(current.getQuantity() + 1);
             purchases.put(item.getName(), current);
-
         } else {
             purchases.put(item.getName(), new Purchase(item));
         }

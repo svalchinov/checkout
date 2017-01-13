@@ -39,20 +39,19 @@ public class Purchase implements Savings {
         return this.quantity;
     }
 
-
     public Promotion getBestPromotion() {
 
-        Promotion promotion = null;
+        Promotion bestPromotion = null;
         BigDecimal discount = ZERO;
 
-        for (Promotion promo : item.getPromotions()) {
-            if (isItemEligible(promo) && promo.getDiscount().compareTo(discount) >= 0) {
-                promotion = promo;
-                discount = promo.getDiscount();
+        for (Promotion promotion : item.getPromotions()) {
+            if (isPromotionDiscountBetter(promotion, discount)) {
+                bestPromotion = promotion;
+                discount = promotion.getDiscount();
             }
         }
 
-        return promotion;
+        return bestPromotion;
     }
 
     @Override
@@ -61,10 +60,9 @@ public class Purchase implements Savings {
         Promotion promotion = getBestPromotion();
 
         if (promotion != null && quantity >= promotion.getQuantity()) {
-            System.out.println("Applying promotion " + promotion.getName() + " to " + item.getName());
-            BigDecimal cost = promotion.getDiscount();
+            BigDecimal discount = promotion.getDiscount();
             int timesPromotionCanBeApplied = quantity / promotion.getQuantity();
-            return cost.multiply(valueOf(timesPromotionCanBeApplied));
+            return discount.multiply(valueOf(timesPromotionCanBeApplied));
         }
 
         return ZERO;
@@ -76,7 +74,7 @@ public class Purchase implements Savings {
     }
 
 
-    private boolean isItemEligible(Promotion promotion) {
-        return quantity >= promotion.getQuantity();
+    private boolean isPromotionDiscountBetter(Promotion promotion, BigDecimal discount) {
+        return quantity >= promotion.getQuantity() && promotion.getDiscount().compareTo(discount) >= 0;
     }
 }
