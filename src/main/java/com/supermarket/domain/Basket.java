@@ -1,7 +1,6 @@
 package com.supermarket.domain;
 
 import com.supermarket.model.Item;
-import com.supermarket.model.PurchaseList;
 
 import java.math.BigDecimal;
 import java.util.Map;

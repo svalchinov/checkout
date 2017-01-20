@@ -2,7 +2,6 @@ package com.supermarket.domain;
 
 import com.supermarket.model.Item;
 import com.supermarket.model.Promotion;
-import com.supermarket.model.PurchaseList;
 import org.junit.Before;
 import org.junit.Test;
 

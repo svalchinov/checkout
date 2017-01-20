@@ -3,7 +3,7 @@ package com.supermarket.integration;
 import com.supermarket.domain.Basket;
 import com.supermarket.model.Item;
 import com.supermarket.model.Promotion;
-import com.supermarket.model.PurchaseList;
+import com.supermarket.domain.PurchaseList;
 import com.supermarket.service.CheckoutService;
 import org.junit.Before;
 import org.junit.Test;
